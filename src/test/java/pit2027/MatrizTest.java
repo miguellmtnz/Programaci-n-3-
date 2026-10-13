@@ -2,6 +2,7 @@ package pit2027;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import org.junit.Test;
 
 
@@ -150,6 +151,34 @@ public class MatrizTest {
         };
 
         new Matriz(datos);
+    }
+
+    @Test
+    public void sumaMatricesDeIgualDimension() {
+        Matriz matriz = new Matriz(new double[][] { { 1.0, 2.0 }, { 3.0, 4.0 } });
+        Matriz otra = new Matriz(new double[][] { { 5.0, 6.0 }, { 7.0, 8.0 } });
+
+        Matriz resultado = matriz.suma(otra);
+
+        assertEquals(6.0, resultado.getElemento(0, 0), 0.0);
+        assertEquals(8.0, resultado.getElemento(0, 1), 0.0);
+        assertEquals(10.0, resultado.getElemento(1, 0), 0.0);
+        assertEquals(12.0, resultado.getElemento(1, 1), 0.0);
+    }
+
+    @Test
+    public void sumaDevuelveNullSiLaOtraMatrizEsNull() {
+        Matriz matriz = new Matriz(new double[][] { { 1.0 } });
+
+        assertNull(matriz.suma(null));
+    }
+
+    @Test
+    public void sumaDevuelveNullSiLasDimensionesSonDistintas() {
+        Matriz matriz = new Matriz(new double[][] { { 1.0, 2.0 } });
+        Matriz otra = new Matriz(new double[][] { { 3.0 }, { 4.0 } });
+
+        assertNull(matriz.suma(otra));
     }
 }
     
