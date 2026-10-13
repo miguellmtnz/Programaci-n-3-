@@ -104,6 +104,16 @@ public class Matriz {
     }
 
     /**
+     * Suma dos matrices y devuelve null cuando la operación no es posible.
+     */
+    public static Matriz suma(Matriz primera, Matriz segunda) {
+        if (primera == null || segunda == null) {
+            return null;
+        }
+        return primera.suma(segunda);
+    }
+
+    /**
      * Devuelve una representación textual de la matriz.
      */
     @Override

@@ -12,6 +12,33 @@ import org.junit.Test;
 public class MatrizTest {
 
     @Test
+    public void sumaEstaticaCalculaTodosLosElementos() {
+        Matriz primera = new Matriz(new double[][] { { 1.0, 2.0 }, { 3.0, 4.0 } });
+        Matriz segunda = new Matriz(new double[][] { { 0.5, -2.0 }, { 7.0, 6.0 } });
+        Matriz suma = Matriz.suma(primera, segunda);
+        assertArrayEquals(new int[] { 2, 2 }, suma.getDimension());
+        assertEquals(1.5, suma.getElemento(0, 0), 1e-9);
+        assertEquals(0.0, suma.getElemento(0, 1), 1e-9);
+        assertEquals(10.0, suma.getElemento(1, 0), 1e-9);
+        assertEquals(10.0, suma.getElemento(1, 1), 1e-9);
+    }
+
+    @Test
+    public void sumaEstaticaRechazaArgumentosNull() {
+        Matriz matriz = new Matriz(new double[][] { { 1.0 } });
+        assertNull(Matriz.suma(null, matriz));
+        assertNull(Matriz.suma(matriz, null));
+        assertNull(Matriz.suma(null, null));
+    }
+
+    @Test
+    public void sumaEstaticaRechazaDimensionesIncompatibles() {
+        Matriz matriz = new Matriz(new double[][] { { 1.0, 2.0 }, { 3.0, 4.0 } });
+        assertNull(Matriz.suma(matriz, new Matriz(new double[][] { { 1.0, 2.0 } })));
+        assertNull(Matriz.suma(matriz, new Matriz(new double[][] { { 1.0 }, { 2.0 } })));
+    }
+
+    @Test
     public void sumaMatricesRectangulares() {
         Matriz primera = new Matriz(new double[][] { { 1.0, -2.0, 0.5 }, { 3.0, 4.0, 5.0 } });
         Matriz segunda = new Matriz(new double[][] { { 2.0, 2.0, 1.5 }, { -3.0, 1.0, 2.0 } });
