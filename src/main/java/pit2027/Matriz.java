@@ -135,6 +135,16 @@ public class Matriz {
     }
 
     /**
+     * Devuelve la traspuesta de la matriz indicada.
+     *
+     * @param matriz matriz que se va a trasponer
+     * @return la matriz traspuesta, o null si el argumento es null
+     */
+    public static Matriz traspuesta(Matriz matriz) {
+        return matriz == null ? null : matriz.traspuesta();
+    }
+
+    /**
      * Devuelve una representación textual de la matriz.
      */
     @Override
