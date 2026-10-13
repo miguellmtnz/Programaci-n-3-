@@ -114,6 +114,19 @@ public class Matriz {
     }
 
     /**
+     * Devuelve una nueva matriz con las filas y columnas intercambiadas.
+     */
+    public Matriz traspuesta() {
+        double[][] traspuesta = new double[columnas][filas];
+        for (int columna = 0; columna < columnas; columna++) {
+            for (int fila = 0; fila < filas; fila++) {
+                traspuesta[columna][fila] = datos[fila][columna];
+            }
+        }
+        return new Matriz(traspuesta);
+    }
+
+    /**
      * Devuelve una representación textual de la matriz.
      */
     @Override

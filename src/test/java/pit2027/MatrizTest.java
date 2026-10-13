@@ -12,6 +12,19 @@ import org.junit.Test;
 public class MatrizTest {
 
     @Test
+    public void traspuestaIntercambiaFilasYColumnas() {
+        Matriz matriz = new Matriz(new double[][] { { 1.0, 2.0, 3.0 }, { 4.0, 5.0, 6.0 } });
+        Matriz traspuesta = matriz.traspuesta();
+        assertArrayEquals(new int[] { 3, 2 }, traspuesta.getDimension());
+        double[][] esperado = { { 1.0, 4.0 }, { 2.0, 5.0 }, { 3.0, 6.0 } };
+        for (int fila = 0; fila < 3; fila++) {
+            for (int columna = 0; columna < 2; columna++) {
+                assertEquals(esperado[fila][columna], traspuesta.getElemento(fila, columna), 1e-9);
+            }
+        }
+    }
+
+    @Test
     public void sumaEstaticaCalculaTodosLosElementos() {
         Matriz primera = new Matriz(new double[][] { { 1.0, 2.0 }, { 3.0, 4.0 } });
         Matriz segunda = new Matriz(new double[][] { { 0.5, -2.0 }, { 7.0, 6.0 } });
