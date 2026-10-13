@@ -180,5 +180,34 @@ public class MatrizTest {
 
         assertNull(matriz.suma(otra));
     }
+
+    @Test
+    public void sumaEstaticaMatricesDeIgualDimension() {
+        Matriz primera = new Matriz(new double[][] { { 1.0, 2.0 }, { 3.0, 4.0 } });
+        Matriz segunda = new Matriz(new double[][] { { 5.0, 6.0 }, { 7.0, 8.0 } });
+
+        Matriz resultado = Matriz.suma(primera, segunda);
+
+        assertEquals(6.0, resultado.getElemento(0, 0), 0.0);
+        assertEquals(8.0, resultado.getElemento(0, 1), 0.0);
+        assertEquals(10.0, resultado.getElemento(1, 0), 0.0);
+        assertEquals(12.0, resultado.getElemento(1, 1), 0.0);
+    }
+
+    @Test
+    public void sumaEstaticaDevuelveNullSiAlgunaMatrizEsNull() {
+        Matriz matriz = new Matriz(new double[][] { { 1.0 } });
+
+        assertNull(Matriz.suma(null, matriz));
+        assertNull(Matriz.suma(matriz, null));
+    }
+
+    @Test
+    public void sumaEstaticaDevuelveNullSiLasDimensionesSonDistintas() {
+        Matriz primera = new Matriz(new double[][] { { 1.0, 2.0 } });
+        Matriz segunda = new Matriz(new double[][] { { 3.0 }, { 4.0 } });
+
+        assertNull(Matriz.suma(primera, segunda));
+    }
 }
     
