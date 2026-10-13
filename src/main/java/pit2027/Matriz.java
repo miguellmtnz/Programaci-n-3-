@@ -83,6 +83,27 @@ public class Matriz {
     }
 
     /**
+     * Devuelve una nueva matriz suma, o null si la otra matriz es null
+     * o tiene un número diferente de filas o columnas.
+     */
+    public Matriz suma(Matriz otra) {
+        if (otra == null) {
+            return null;
+        }
+        int[] dimension = otra.getDimension();
+        if (dimension[0] != filas || dimension[1] != columnas) {
+            return null;
+        }
+        double[][] suma = new double[filas][columnas];
+        for (int fila = 0; fila < filas; fila++) {
+            for (int columna = 0; columna < columnas; columna++) {
+                suma[fila][columna] = datos[fila][columna] + otra.getElemento(fila, columna);
+            }
+        }
+        return new Matriz(suma);
+    }
+
+    /**
      * Devuelve una representación textual de la matriz.
      */
     @Override

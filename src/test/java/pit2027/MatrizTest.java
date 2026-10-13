@@ -2,6 +2,7 @@ package pit2027;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import org.junit.Test;
 
 
@@ -9,6 +10,33 @@ import org.junit.Test;
  * Pruebas de los constructores de Matriz.
  */
 public class MatrizTest {
+
+    @Test
+    public void sumaMatricesRectangulares() {
+        Matriz primera = new Matriz(new double[][] { { 1.0, -2.0, 0.5 }, { 3.0, 4.0, 5.0 } });
+        Matriz segunda = new Matriz(new double[][] { { 2.0, 2.0, 1.5 }, { -3.0, 1.0, 2.0 } });
+        Matriz suma = primera.suma(segunda);
+        assertArrayEquals(new int[] { 2, 3 }, suma.getDimension());
+        double[][] esperado = { { 3.0, 0.0, 2.0 }, { 0.0, 5.0, 7.0 } };
+        for (int fila = 0; fila < 2; fila++) {
+            for (int columna = 0; columna < 3; columna++) {
+                assertEquals(esperado[fila][columna], suma.getElemento(fila, columna), 1e-9);
+            }
+        }
+    }
+
+    @Test
+    public void sumaRechazaArgumentoNull() {
+        Matriz matriz = new Matriz(new double[][] { { 1.0 } });
+        assertNull(matriz.suma(null));
+    }
+
+    @Test
+    public void sumaRechazaDimensionesIncompatibles() {
+        Matriz matriz = new Matriz(new double[][] { { 1.0, 2.0 }, { 3.0, 4.0 } });
+        assertNull(matriz.suma(new Matriz(new double[][] { { 1.0, 2.0 } })));
+        assertNull(matriz.suma(new Matriz(new double[][] { { 1.0 }, { 2.0 } })));
+    }
 
     /*
      * Comprobamos el caso más sencillo:
